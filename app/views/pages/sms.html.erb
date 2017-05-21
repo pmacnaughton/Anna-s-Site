@@ -1,0 +1,27 @@
+<head>
+	<meta charset="utf-8">
+
+	<title>About Anna</title>
+	<link href="https://fonts.googleapis.com/css?family=Lato:400,900|Rokkitt:400,700" rel="stylesheet">
+	<%= stylesheet_link_tag "application.css" %>
+</head>
+
+<div class="container">
+	<h1>Congrats!</h1>
+	<b></b>
+	<h2>Your message <span class="label label-primary">"<%= params[:exampleInputMessage2] %>"</span> </h2>
+	<h2>has been sent to <span class="label label-primary"><%= params[:exampleInputNumber2] %></span></h2> 
+</div>
+<%=
+account_sid = ENV["twilio_api_key"] # Your Account SID from www.twilio.com/console
+auth_token = ENV["twilio_oauth"]   # Your Auth Token from www.twilio.com/console
+
+begin
+    @client = Twilio::REST::Client.new account_sid, auth_token
+    message = @client.account.messages.create(:body => params[:exampleInputMessage2],
+        :to => params[:exampleInputNumber2],    # Replace with your phone number
+        :from => "+19787753097")  # Replace with your Twilio number
+rescue Twilio::REST::RequestError => e
+    puts e.message
+end 
+%>

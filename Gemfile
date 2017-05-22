@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.4'
+ruby '2.3.3'
 
 git_source(:github) do |repo_name|
   repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
@@ -20,6 +20,9 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 #gem 'therubyracer', platforms: :ruby
 
+#Updated bcrypt package to avoid windows error
+gem 'bcrypt', platforms: :ruby
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -29,8 +32,11 @@ gem 'jbuilder', '~> 2.5'
 
 # Easy Frontend
 gem 'bootstrap-sass'
+
+#Others
 gem 'twilio-ruby'
 gem 'figaro'
+gem 'devise'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password

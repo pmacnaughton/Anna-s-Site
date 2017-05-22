@@ -15,17 +15,24 @@
 			<p></p>
 			<h2>This App generates a compliment and texts it to Anna</h2>
 
-			<%= form_tag("/sms/send", method: "post") do %>
-  				<%= render 'layouts/compform' %>
+			<% if user_signed_in? %>
+				<%= form_tag("/sms/send", method: "post") do %>
+	  				<%= render 'layouts/compform' %>
+				<% end %>
+
+				<b></b>
+				<p1><span class="label label-primary"><%= params[:exampleInputNumber2] %></span></p1> 
+
+				<%= form_tag("/sms/send", method: "post") do %>
+				  <%= render 'layouts/smsform' %>
+				<% end %>
+			<% else %>
+				<p>
+					<%= link_to "Log in", new_user_session_path, class: "btn btn-default btn-lg" %>
+					<%= link_to "Sign Up", new_user_registration_path, class: "btn btn-primary btn-lg" %>
+				</p>
 			<% end %>
 
-			<b></b>
-			<p1><span class="label label-primary"><%= params[:exampleInputNumber2] %></span></p1> 
-
-			<%= form_tag("/sms/send", method: "post") do %>
-			  <%= render 'layouts/smsform' %>
-			<% end %>
-			
 			<b></b>
 			<a href="https://github.com/onemonthrails" target=_blank>
 				<%= image_tag('github.png', :alt => "Github") %>
